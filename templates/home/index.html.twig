@@ -9,12 +9,82 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/xampp/htdocs/optreden/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/optreden/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
-    </ul>
+    <h3>Alle optredens</h3>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Naam</th>
+            <th>Genre</th>
+            <th>Prijs</th>
+            <th>Datum</th>
+            <th>Aanvang</th>
+            <th>Zaal</th>
+            <th>Stoel</th>
+        </tr>
+        </thead>
+    {% for optreden in optredens %}
+        <tr>
+        <td>{{ optreden.naam }}</td>
+        <td>{{ optreden.genre}}</td>
+        <td>{{ optreden.prijs }}</td>
+        <td>{{ optreden.datum}}</td>
+        <td>{{ optreden.aanvang}}</td>
+        <td>{{ optreden.zaal}}</td>
+        <td>{{ optreden.maxseats}}</td>
+        </tr>
+    {% endfor %}
+    </table>
+    <h3> Optredens al geweest </h3>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Naam</th>
+            <th>Genre</th>
+            <th>Prijs</th>
+            <th>Datum</th>
+            <th>Aanvang</th>
+            <th>Zaal</th>
+            <th>Stoel</th>
+        </tr>
+        </thead>
+    {% for optreden in optredensAlGeweest %}
+        <tr>
+            <td>{{ optreden.naam }}</td>
+            <td>{{ optreden.genre}}</td>
+            <td>{{ optreden.prijs }}</td>
+            <td>{{ optreden.datum}}</td>
+            <td>{{ optreden.aanvang}}</td>
+            <td>{{ optreden.zaal}}</td>
+            <td>{{ optreden.maxseats}}</td>
+        </tr>
+    {% endfor %}
+    </table>
+    <h3> Optredens komende week </h3>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Naam</th>
+            <th>Genre</th>
+            <th>Prijs</th>
+            <th>Datum</th>
+            <th>Aanvang</th>
+            <th>Zaal</th>
+            <th>Stoel</th>
+        </tr>
+        </thead>
+    {% for optreden in optredenKomend %}
+        <tr>
+            <td>{{ optreden.naam }}</td>
+            <td>{{ optreden.genre}}</td>
+            <td>{{ optreden.prijs }}</td>
+            <td>{{ optreden.datum}}</td>
+            <td>{{ optreden.aanvang}}</td>
+            <td>{{ optreden.zaal}}</td
+            >
+            <td>{{ optreden.maxseats}}</td>
+        </tr>
+    {% endfor %}
+    </table>
 </div>
 {% endblock %}

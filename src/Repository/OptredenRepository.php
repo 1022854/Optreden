@@ -18,6 +18,47 @@ class OptredenRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Optreden::class);
     }
+    public function getAllOptreden(){$conn = $this->getEntityManager()->getConnection();
+
+        $sql = '
+        SELECT * FROM optreden o
+        JOIN artiest ON o.artiest_id = artiest.id
+        ';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+
+    }
+
+public function getOptredenAlGeweest(){
+    $conn = $this->getEntityManager()->getConnection();
+
+    $sql = '
+        SELECT * FROM optreden o
+        JOIN artiest a ON o.artiest_id = a.id
+        WHERE o.datum  < NOW()
+        ';
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+
+    return $stmt->fetchAll();
+}
+
+public function getOptredenKomendeWeek(){
+    $conn = $this->getEntityManager()->getConnection();
+
+    $sql = '
+        SELECT * FROM optreden o
+        JOIN artiest a ON o.artiest_id = a.id
+        WHERE o.datum BETWEEN NOW() AND NOW() + INTERVAL 7 DAY
+        ';
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+
+    return $stmt->fetchAll();
+}
+
 
     // /**
     //  * @return Optreden[] Returns an array of Optreden objects
